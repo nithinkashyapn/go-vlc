@@ -105,21 +105,6 @@ func (this *Instance) Wait() error {
 	return nil
 }
 
-// LogVerbosity returns the VLC messaging verbosity level.
-func (this *Instance) LogVerbosity() uint {
-	if this.ptr == nil {
-		return 0
-	}
-	return uint(C.libvlc_get_log_verbosity(this.ptr))
-}
-
-// SetLogVerbosity sets the VLC messaging verbosity level.
-func (this *Instance) SetLogVerbosity(v uint) {
-	if this.ptr != nil {
-		C.libvlc_set_log_verbosity(this.ptr, C.uint(v))
-	}
-}
-
 // OpenLog opens a VLC message log instance.
 func (this *Instance) OpenLog() (*Log, error) {
 	if this.ptr == nil {
