@@ -105,20 +105,6 @@ func (this *Instance) Wait() error {
 	return nil
 }
 
-// OpenLog opens a VLC message log instance.
-func (this *Instance) OpenLog() (*Log, error) {
-	if this.ptr == nil {
-		return nil, os.EINVAL
-	}
-
-	if c := C.libvlc_log_open(this.ptr); c != nil {
-		l := new(Log)
-		l.fromC(c)
-		return l, nil
-	}
-
-	return nil, checkError()
-}
 
 // OpenMediaUri loads a media instance from the given uri.
 func (this *Instance) OpenMediaUri(uri string) (*Media, error) {
